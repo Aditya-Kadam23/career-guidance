@@ -1,11 +1,22 @@
 import React from "react";
+
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LevelSelection from "./LevelSelection";
 import { useNavigate } from 'react-router-dom'
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+ 
+  useEffect(  () =>{
+    // const user = localStorage.getItem('user');
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user &&user.role == 'mentor'){
+       navigate('/mentor');
+      alert("Cannot access student dashboard , login as student to access this page");
+    }
+  },[]);
+
 
   const handleGetStarted = () => {
       

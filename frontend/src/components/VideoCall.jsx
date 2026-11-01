@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Mic, MicOff, Video, VideoOff, PhoneOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket";

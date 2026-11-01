@@ -12,9 +12,10 @@ export default function Login() {
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
+    
     try {
       const response = await API.post('/auth/login', formData);
-
+     
       if (response.data && response.data.token) {
 
 
@@ -22,19 +23,20 @@ export default function Login() {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         
-          navigate("/");
-        
-
+        if(response.data.user.role == 'mentor'){
+         
+          navigate("/mentor")
+        }else{
+          
+           navigate("/");
+        }
+         
       }
 
       toast.success(response.data.message);
 
     } catch (error) {
-      // console.log("error is appearing but not showing in toast", error.response?.data?.message);
-      // toast.error(response.data.message || "Login failed. Please try again.");
-
-      // console.log("Error:", error.response?.data?.message);
-
+  
       console.error(error);
       console.error(error.stack);
       toast.error(

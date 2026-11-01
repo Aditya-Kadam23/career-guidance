@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 import API from "../api/axios";
 import Chat from "./Chat";
 import VideoCall from "../components/VideoCall";
@@ -44,6 +45,7 @@ const MentorDashboard = () => {
 
   return (
    <>
+   <Navbar />
    {showCall ? (
       <VideoCall roomId={roomId} isCaller={true} />
     ):(
@@ -157,7 +159,7 @@ const MentorDashboard = () => {
             {/* Chat Section */}
             <div className="flex-1 overflow-hidden">
               {selectedStudent ? (
-                <Chat selectedStudent={selectedStudent} setRoomId={setRoomId} />
+                <Chat selectedStudent={selectedStudent} setSelectedStudent={setSelectedStudent} setRoomId={setRoomId} />
               ) : (
                 <div className="flex items-center justify-center h-full text-slate-400 text-sm">
                   Select a student to start chatting
